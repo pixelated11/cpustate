@@ -21,7 +21,7 @@ _Note that your AUR helper might be other than yay._
 ### Manual
 
 ```bash
-git clone https://github.com/yourusername/cpustate
+git clone https://github.com/pixelated11/cpustate
 cd cpustate
 pip install --user .
 ```
@@ -31,7 +31,7 @@ pip install --user .
 ### Build the AUR package locally
  
 ```bash
-git clone https://github.com/yourusername/cpustate
+git clone https://github.com/pixelated11/cpustate
 cd cpustate
 makepkg -si
 ```
