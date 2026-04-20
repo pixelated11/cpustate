@@ -26,6 +26,18 @@ cd cpustate
 pip install --user .
 ```
 
+## Building
+ 
+### Build the AUR package locally
+ 
+```bash
+git clone https://github.com/yourusername/cpustate
+cd cpustate
+makepkg -si
+```
+ 
+`makepkg -si` builds the package and installs it via pacman in one step.
+
 ## Setup
 
 Enable the systemd service so settings apply on boot:
