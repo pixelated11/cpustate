@@ -13,26 +13,11 @@ sha256sums=('SKIP')
 
 build() {
     cd "$pkgname-$pkgver"
-    python -m compileall cpustate/
+    pip install --no-deps --no-build-isolation --prefix=/usr --root="$pkgdir" .
 }
 
 package() {
     cd "$pkgname-$pkgver"
-
-    # Install Python package manually
-    local pyver=$(python -c "import sys; print(f'{sys.version_info.major}.{sys.version_info.minor}')")
-    local sitepkg="$pkgdir/usr/lib/python$pyver/site-packages/cpustate"
-    install -dm755 "$sitepkg"
-    install -Dm644 cpustate/*.py -t "$sitepkg"
-
-    # Entry point wrapper script
-    install -dm755 "$pkgdir/usr/bin"
-    cat > "$pkgdir/usr/bin/cpustate" << 'EOF'
-#!/usr/bin/env python3
-from cpustate.__main__ import main
-main()
-EOF
-    chmod 755 "$pkgdir/usr/bin/cpustate"
 
     # systemd service
     install -Dm644 systemd/cpustate.service \
