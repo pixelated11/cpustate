@@ -1,6 +1,6 @@
 # Maintainer: Andrew <itspixelatd@proton.me>
 pkgname=cpustate
-pkgver=0.1.0
+pkgver=0.1.1
 pkgrel=1
 pkgdesc="Persist CPU power settings (governor, EPP, ryzenadj) across boot and sleep"
 arch=('any')
@@ -26,13 +26,7 @@ package() {
     install -Dm644 cpustate/*.py -t "$sitepkg"
 
     # Entry point wrapper script
-    install -dm755 "$pkgdir/usr/bin"
-    cat > "$pkgdir/usr/bin/cpustate" << 'EOF'
-#!/usr/bin/env python3
-from cpustate.__main__ import main
-main()
-EOF
-    chmod 755 "$pkgdir/usr/bin/cpustate"
+    install -Dm755 bin/cpustate "$pkgdir/usr/bin/cpustate"
 
     # systemd service
     install -Dm644 systemd/cpustate.service \
